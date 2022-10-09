@@ -72,8 +72,8 @@
      */
     @Override
     public String toString() {
-        return super.getColor() + " Crossbody Bag with " + this.numberOfStraps + " straps " +
-                "(" + super.getNumberOfContents() + " / " + super.getCapacity() + ")";
+        return this.getColor() + " Crossbody Bag with " + this.numberOfStraps + " straps " +
+                "(" + this.getNumberOfContents() + " / " + this.getCapacity() + ")";
     }
 
     }
