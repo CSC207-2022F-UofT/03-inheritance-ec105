@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.ArrayList;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,8 +15,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
+     private String color;
+     private Integer numberOfContents;
+     private Integer capacity;
+     private String[] contents;
 
 
     /*
@@ -26,9 +30,12 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-
-
-
+    public Bag(String color, Integer capacity) {
+        this.color = color;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new String[this.capacity];
+    }
 
     /*
      * TODO: Create a variety of 'getter' functions.
@@ -37,8 +44,17 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
+    public String getColor(){
+        return this.color;
+    }
 
+    public int getNumberOfContents(){
+        return this.numberOfContents;
+    }
 
+    public int getCapacity(){
+        return this.capacity;
+    }
 
 
     /*
@@ -46,7 +62,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
+    public void setColor(String color){
+        this.color = color;
+    }
 
 
 
@@ -60,7 +78,14 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
-
+    public boolean addItem(String item){
+        if (this.numberOfContents < this.capacity){
+            this.contents[this.numberOfContents] = item;
+            this.numberOfContents += 1;
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -75,7 +100,20 @@ public abstract class Bag {
      *
      * @return
      */
-
+     public String popItem(){
+         if (numberOfContents == 0) {
+             return null;
+         }
+         else {
+             String item =  this.contents[this.numberOfContents - 1];
+             String[] anotherArray = new String[this.capacity];
+             System.arraycopy(this.contents, 0 , anotherArray, 0,
+                     this.numberOfContents - 1);
+             this.contents = anotherArray;
+             this.numberOfContents -= 1;
+             return item;
+         }
+     }
 
 
 
@@ -87,7 +125,10 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        String[] newarray = new String[this.capacity + n];
+        System.arraycopy(this.contents, 0, newarray, 0, this.capacity);
+        this.contents = newarray;
+        this.capacity += n;
     }
 
     /**
@@ -95,7 +136,7 @@ public abstract class Bag {
      * This method requires you to have created the private
      * instance variables mentioned above.
      *
-     * @return
+     * @return String
      */
     @Override
     public String toString() {

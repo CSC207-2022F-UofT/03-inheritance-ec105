@@ -26,7 +26,7 @@ public class CrossbodyBagTest {
         assertEquals(2, b.getNumberOfStraps());
     }
 
-    @Test(timeout = 50)
+    @Test(timeout = 500)
     public void TestEnhance() {
         b.enhance();
         assertEquals(6, b.getCapacity());
